@@ -74,7 +74,9 @@ jobs:
 
     - name: Setup AppImage
       if: ${{ matrix.os == 'ubuntu-latest' }}
+      # thanks linuxdeploy for not preinstalling your dependencies :<
       run: |
+        sudo apt install -y appstream libfuse2
         make install DESTDIR=AppDir
         install -Dm755 "${{ github.workspace }}/org.TeamOpenFIRE.OpenFIREapp.desktop" "AppDir/usr/share/applications/org.TeamOpenFIRE.OpenFIREapp.desktop"
         install -Dm755 "${{ github.workspace }}/ico/openfire.svg" "AppDir/usr/share/icons/hicolor/scalable/apps/org.TeamOpenFIRE.OpenFIREapp.svg"
