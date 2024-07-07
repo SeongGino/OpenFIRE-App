@@ -67,13 +67,13 @@ jobs:
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
     - name: Install linuxdeploy
-      if: ${{ matrix.os == "ubuntu-latest" }}
+      if: ${{ matrix.os == 'ubuntu-latest' }}
       uses: miurahr/install-linuxdeploy-action@v1
       with:
         plugins: qt appimage
 
     - name: Setup AppImage
-      if: ${{ matrix.os == "ubuntu-latest" }}
+      if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
         make install DESTDIR=AppDir
         install -Dm755 "${{ github.workspace }}/org.TeamOpenFIRE.OpenFIREapp.desktop" "AppDir/usr/share/applications/org.TeamOpenFIRE.OpenFIREapp.desktop"
